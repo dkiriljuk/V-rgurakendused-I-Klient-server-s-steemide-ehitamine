@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Kodune Ulesanne</title>
+	<style type="text/css">
+	.active { background: skyblue; padding: 10px;}
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript">
+		window.onload = function(){
+			$("li:first").addClass("active");	
+			next = document.getElementById('next');
+			next.onclick = function(){
+				var active = $(".active").removeClass('active');
+				if(active.next() && active.next().length){
+						active .next().addClass('active');
+				}
+				else{
+						active.siblings(":first").addClass('active');
+				}
+			}
+			previous = document.getElementById('prev');
+			previous.onclick = function(){
+				var active = $(".active").removeClass('active');
+				if(active.prev() && active.prev().length){
+					active .prev().addClass('active');
+				}
+				else{
+					active.siblings(":last").addClass('active');
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+<button id="next">edasi</button>
+<button id="prev">tagasi</button>
+
+<ul>
+<li>esimene</li>
+<li>teine</li>
+<li>kolmas</li>
+<li>neljas</li>
+</ul>
+
+</body>
+</html>
