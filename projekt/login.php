@@ -39,7 +39,7 @@
 			if ($usname == $dbUsname && $hash_pass == $dbPassword) { 
 	            $_SESSION['username'] = $usname;
 	            $_SESSION['id'] = $id;
-	            header("Location: user.php");
+	            header("Location: site.php");
 		    } 
 		    else {
 				echo "<script type='text/javascript'>alert();</script>";
@@ -70,9 +70,8 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
       </div>
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-    
+    </div>
+  </div>
+</div>
 </body>
 </html>
