@@ -1,0 +1,25 @@
+<div id="wrap">
+	<h3>Valiku tulemus</h3>
+	<p>
+		<?php
+		$dir = 'pildid/';
+		$images = glob($dir . '*.jpg');
+		$imgList = array();
+		foreach($images as $img){
+			$imgList[]=$img;
+		}
+		if(!empty($_POST)){
+			error_reporting(0);
+			$nr = intval($_POST['pilt'])-1;
+			if(in_array($images[intval($_POST['pilt'])-1], $imgList)) {
+				echo "<p>Thank you! Your vote counts! The picture number ".$_POST['pilt']." is my favorite too. </p>";
+	} else {
+	echo "<p>Your vote is not in the list, sorry.</p>";
+	}
+	} else {
+	echo "<p>Go back and vote, this is your obligation.</p>";
+	}
+	?>
+	</p>
+</div>
+
