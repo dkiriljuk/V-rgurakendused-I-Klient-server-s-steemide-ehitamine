@@ -10,10 +10,10 @@ class db {
 	
 	function __construct($params=array()) {
 		$this->conn = false;
-		$this->host = 'localhost'; //hostname
-		$this->user = 'test'; //username
-		$this->password = 't3st3r123'; //password
-		$this->baseName = 'test'; //name of your database
+		$this->host = 'dima.gnw.ee'; //hostname
+		$this->user = 'dima'; //username
+		$this->password = 'n2TRKbxN28e'; //password
+		$this->baseName = 'projekt_dima'; //name of your database
 		$this->port = '3306';
 		$this->debug = true;
 		$this->connect();

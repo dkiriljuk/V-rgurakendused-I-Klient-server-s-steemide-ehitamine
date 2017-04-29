@@ -8,21 +8,8 @@
   <script src="js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
-  <script type="text/javascript">
-  	function alert(){
-  		$(document).ready(function(){
-			var types = [BootstrapDialog.TYPE_DANGER];                  
-        $.each(types, function(index, type){
-            BootstrapDialog.show({
-                type: type,
-                title: 'Warning',
-                message: 'Your Username or Password is incorect',
-            });     
-        });
-        });
-  	}
-  </script>
 </head>
+<script type="text/javascript" src="js/script.js"></script>
 <body>
 	<?php
 		session_start();
@@ -32,7 +19,7 @@
 		$usname = strip_tags($_POST['inputUsername']);
 	    $paswd = strip_tags($_POST['inputPassword']);
 		$hash_pass = md5($paswd);
-		$login = $database->getOne("SELECT id, username, password FROM dkiriljuk_login WHERE username = '$usname'");
+		$login = $database->getOne("SELECT id, username, password FROM login WHERE username = '$usname'");
 		$id = $login['id'];
 		$dbUsname = $login['username'];
 		$dbPassword = $login['password'];
@@ -42,7 +29,7 @@
 	            header("Location: site.php");
 		    } 
 		    else {
-				echo "<script type='text/javascript'>alert();</script>";
+				echo "<script type='text/javascript'>alert_login();</script>";
 	   		}   
 		}
 	?>
