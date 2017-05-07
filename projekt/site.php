@@ -23,11 +23,23 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-show-password/1.0.3/bootstrap-show-password.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
-  <script type="text/javascript" src="js/script.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+  <script type="text/javascript" src="script.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyBsFiE7YPUalcCyLG4ZXlhTPHx9d4C6A&callback=initMap">
     </script>
 </head>
+<style type="text/css">
+  td.details-control {
+    background: url('../resources/details_open.png') no-repeat center center;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('../resources/details_close.png') no-repeat center center;
+}
+</style>
 <body>
 <nav class="navbar navbar-inverse bg-primary">
   <div class="container-fluid">
@@ -62,19 +74,19 @@
     </div>
     <div id="menu2" class="tab-pane fade col-md-offset-1 col-md-10">
       <h3>Device</h3>
-      <table class="table" style="border-collapse:collapse;">
-        <tbody>
+      <table id="table" class="display" cellspacing="0" width="100%">
           <thead>
             <tr>
               <th>ID</th>
               <th>Name</th>
               <th>Location</th>
-              <th>More</th>
-             </tr>
+            </tr>
           </thead>
-        </tbody>
     </table>
     </div>
+    <script type="text/javascript">
+      
+    </script>
     <div id="menu3" class="tab-pane fade col-md-offset-1">
 	    <div class="col-xs-12 col-md-8">
 	      <h2>Please add divece(SWITCH/ROUTER)</h2>

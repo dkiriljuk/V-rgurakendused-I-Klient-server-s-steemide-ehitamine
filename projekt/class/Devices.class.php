@@ -50,6 +50,7 @@ class Devices{
                 $newnode->setAttribute("id", $data['id']);
                 $newnode->setAttribute("name", $data['name']);
                 $newnode->setAttribute("address", $data['location']);
+                $newnode->setAttribute("state", $data['state']);
                 $vals = array_count_values($arr);
                 foreach ($arr as &$value) {
                     $newnode->setAttribute("count", $vals[$value]);

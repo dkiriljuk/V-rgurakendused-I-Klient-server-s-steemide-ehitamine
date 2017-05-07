@@ -1,30 +1,19 @@
-$.post( "functions.php",
-        {
-            select: "true"
+$(document).ready(function() {
+    $('#table').DataTable( {
+      "autoWidth": "false",
+        "ajax": {
+            "url": "functions.php?select=true",
+            "type": "POST",
+            "dataSrc": ""
         },
- function( data ) {
-    var json = $.parseJSON(data);
-    
-    for (var i=0;i<json.length;++i)
-        {
-            $('tbody').append(
-            '<tr data-toggle="collapse" data-target="#demo'+i+'">'+
-                '<td>'+json[i].id+'</td>'+
-                '<td>'+json[i].name+'</td>'+
-                '<td>'+json[i].location+'</td>'+
-                '<td class="text-success">'+
-                  '<a href="#">'+
-                    '<span class="glyphicon glyphicon-plus-sign"></span>'+
-                  '</a>'+
-                '</td>'+
-            '</tr>'+
-            '<tr >'+
-                '<td colspan="6" class="hiddenRow">'+
-                '<div class="accordian-body collapse" id="demo'+i+'"><b>Manufacture:</b> '+json[i].manufacture+'<br><b>Model:</b> '+json[i].model+'<br><b>Manage IP:</b> '+json[i].ip+'<br><b>Loggin type:</b> '+json[i].type+''+
-                '</div></td>'+
-            '</tr>');
-        }
-});
+        "columns": [
+            { "data": "id" },
+            { "data": "name" },
+            { "data": "location" }
+        ]
+    } );
+} );
+     
 
 $( "#insertForm" ).submit(function( event ) {
   event.preventDefault();
@@ -80,8 +69,6 @@ var customLabel = {
           zoom: 8
         });
         geocoder = new google.maps.Geocoder();
-        //var mark = "true";
-        //$.post( "functions.php", { mark: mark} );
         downloadUrl('functions.php?marker=true',
          function(data) {
           var xml = data.responseXML;
@@ -91,33 +78,66 @@ var customLabel = {
             var name = markerElem.getAttribute('name');
             var address = markerElem.getAttribute('address');
             var count = markerElem.getAttribute('count');
+            var state = markerElem.getAttribute('state');
             var infoWindow = new google.maps.InfoWindow;
-              
+            console.log(state);
+            var image_green = {
+              url: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
+            };
+            var image_red = {
+              url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+            };
+            var markers = 'http://dima.gnw.ee/markers/markergreen.png';
             geocoder.geocode( {address:address}, function(results, status) { 
               if (status == google.maps.GeocoderStatus.OK) 
               {
-                if(count > 1)
-                {
-                  var Latlng = new google.maps.LatLng(results[0].geometry.location.lat() + (Math.random() -.5) / 20000,results[0].geometry.location.lng() + (Math.random() -.5) / 20000);
-                  var marker = new google.maps.Marker({
-                    map: map,
-                    position: Latlng
-                  }); 
-                }
+                if(state == 'inactive'){
+                    if(count > 1)
+                    {
+
+                      var Latlng = new google.maps.LatLng(results[0].geometry.location.lat() + (Math.random() -.5) / 20000,results[0].geometry.location.lng() + (Math.random() -.5) / 20000);
+                      var marker = new google.maps.Marker({
+                        map: map,
+                        position: Latlng,
+                        icon: image_red
+                      }); 
+                    }
+                    else
+                    {
+                      var Latlng = new google.maps.LatLng(results[0].geometry.location.lat(),results[0].geometry.location.lng());
+                      var marker = new google.maps.Marker({
+                        map: map,
+                        position: Latlng,
+                        icon: image_red
+                      }); 
+                    }
+                                                    
+                  } 
+                
                 else
                 {
-                  var Latlng = new google.maps.LatLng(results[0].geometry.location.lat(),results[0].geometry.location.lng());
-                  var marker = new google.maps.Marker({
-                    map: map,
-                    position: Latlng
-                  }); 
+                  if(count > 1)
+                    {
+
+                      var Latlng = new google.maps.LatLng(results[0].geometry.location.lat() + (Math.random() -.5) / 20000,results[0].geometry.location.lng() + (Math.random() -.5) / 20000);
+                      var marker = new google.maps.Marker({
+                        map: map,
+                        position: Latlng,
+                        icon: image_green
+                      }); 
+                    }
+                    else
+                    {
+                      var Latlng = new google.maps.LatLng(results[0].geometry.location.lat(),results[0].geometry.location.lng());
+                      var marker = new google.maps.Marker({
+                        map: map,
+                        position: Latlng,
+                        icon: image_green
+                      }); 
+                    }
+                                                    
+                  }
                 }
-                                                
-              } 
-              else 
-              {
-                alert('Geocode was not successful for the following reason: ' + status);
-              }
               var infowincontent = document.createElement('div');
               var strong = document.createElement('strong');
               strong.textContent = name
@@ -154,15 +174,3 @@ var customLabel = {
       }
       function doNothing() {}
 
-function alert_login(){
-        $(document).ready(function(){
-            var types = [BootstrapDialog.TYPE_DANGER];                  
-        $.each(types, function(index, type){
-            BootstrapDialog.show({
-                type: type,
-                title: 'Warning',
-                message: 'Your Username or Password is incorect',
-            });     
-        });
-        });
-    }
