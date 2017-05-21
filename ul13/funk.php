@@ -25,7 +25,7 @@ function logi(){
 					array_push($errors, "Empty password field.");
 				}
 			}else{
-				$sql = "SELECT id FROM alikhach_kylastajad WHERE username='".mysqli_real_escape_string($connection, $_POST["user"])."' AND passw=SHA1('". mysqli_real_escape_string($connection, $_POST["pass"])."')";
+				$sql = "SELECT id FROM dkiriljukAK11_kylastajad WHERE username='".mysqli_real_escape_string($connection, $_POST["user"])."' AND passw=SHA1('". mysqli_real_escape_string($connection, $_POST["pass"])."')";
 				$result = mysqli_num_rows(mysqli_query($connection, $sql));
 				if($result){
 					$_SESSION["user"] = $_POST["user"];
