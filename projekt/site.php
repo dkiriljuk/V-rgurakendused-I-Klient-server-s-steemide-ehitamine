@@ -26,10 +26,10 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-  <script type="text/javascript" src="script.js"></script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyBsFiE7YPUalcCyLG4ZXlhTPHx9d4C6A&callback=initMap">
     </script>
+  <script type="text/javascript" src="js/script.js"></script>
 </head>
 <style type="text/css">
   td.details-control {
@@ -44,7 +44,7 @@ tr.shown td.details-control {
 <nav class="navbar navbar-inverse bg-primary">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="site.php">WebSiteName</a>
+      <a class="navbar-brand" href="site.php">DevicesMonitoring</a>
     </div>
     <ul id="mainTabs" class="nav navbar-nav">
       <li class="active"><a data-toggle="tab" href="#map">Device location</a></li>
@@ -80,6 +80,10 @@ tr.shown td.details-control {
               <th>ID</th>
               <th>Name</th>
               <th>Location</th>
+              <th>Manufacture</th>
+              <th>Model</th>
+              <th>Loggin type</th>
+              <th>Status</th>
             </tr>
           </thead>
     </table>
@@ -94,23 +98,23 @@ tr.shown td.details-control {
 	    <form action="functions.php" id="insertForm">
 		    <div class="form-group col-xs-8 col-md-8">
 		  		<label for="name">Name:</label>
-		  		<input type="text" placeholder="S1-IPA-OFF-TLL" class="form-control" id="name" name="name">
+		  		<input type="text" placeholder="S1-IPA-OFF-TLL" class="form-control" id="name" name="name" required>
 			</div>
 			<div class="form-group col-xs-8 col-md-8">
 		  		<label for="manufacture">Manufacture:</label>
-		  		<input type="text" class="form-control" id="manufacture" name="manufacture">
+		  		<input type="text" class="form-control" placeholder="Cisco" id="manufacture" name="manufacture" required>
 			</div>
 			<div class="form-group col-xs-8 col-md-8">
 		  		<label for="model">Model:</label>
-		  		<input type="text" class="form-control" id="model" name="model">
+		  		<input type="text" class="form-control" placeholder="3750G" id="model" name="model" required>
 			</div>
 			<div class="form-group col-xs-8 col-md-8">
 		  		<label for="location">Location:</label>
-		  		<input type="text" placeholder="Ädala 4f, Tallinn" id="location" class="form-control" name="location">
+		  		<input type="text" placeholder="Ädala 4f, Tallinn" id="location" class="form-control" name="location" required>
 			</div>
 			<div class="form-group col-xs-8 col-md-8">
 		  		<label for="ip">Manage IP:</label>
-		  		<input type="text" placeholder="172.10.1.173" class="form-control" id="ip" name="ip">
+		  		<input type="text" placeholder="172.10.1.173" class="form-control" id="ip" name="ip" required>
 			</div>
 			<div class="form-group col-xs-8 col-md-8">
 		  		<label for="type">Loggin type:</label>
@@ -143,6 +147,44 @@ tr.shown td.details-control {
 	 </div>
   </div>
 </div>
-
+<script type="text/javascript">
+$( "#insertForm" ).submit(function( event ) {
+  event.preventDefault();
+  var $form = $( this ),
+    name = $form.find( "input[name='name']" ).val(),
+    manufacture = $form.find( "input[name='manufacture']" ).val(),
+    model = $form.find( "input[name='model']" ).val(),
+    location = $form.find( "input[name='location']" ).val(),
+    ip = $form.find( "input[name='ip']" ).val(),
+    type = $form.find( "select[name='type']" ).val(),
+    insert = "true",
+    url = $form.attr( "action" );
+  var posting = $.post( url, { name: name, manufacture: manufacture, model: model, location: location, ip: ip, type: type, insert: insert} );
+ 
+  posting.done(function( data ) {
+    if(data = 'success'){
+      $("#name").val('');
+      $("#manufacture").val('');
+      $("#model").val('');
+      $("#location").val('');
+      $("#ip").val('');
+      $("#type").val('SSH');
+      alert_insert_success();
+    }
+    
+  });
+});
+function alert_insert_success(){
+      $(document).ready(function(){
+      var types = [BootstrapDialog.TYPE_SUCCESS];                  
+        $.each(types, function(index, type){
+            BootstrapDialog.show({
+                type: type,
+                title: 'SUCCESS',
+                message: 'Your device has been stored!',
+            });     
+        });
+        });
+    }</script>
 </body>
 </html>

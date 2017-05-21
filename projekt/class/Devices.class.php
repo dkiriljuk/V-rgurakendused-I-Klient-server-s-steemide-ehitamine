@@ -29,7 +29,8 @@ class Devices{
                 $row_array['model'] = $data['model'];
                 $row_array['location'] = $data['location'];
                 $row_array['ip'] = $data['ip'];
-                $row_array['type'] = $data['type']; 
+                $row_array['type'] = $data['type'];
+                $row_array['state'] = $data['state'];
                 array_push($return_arr,$row_array); 
             }
             return json_encode($return_arr);
