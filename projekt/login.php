@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <title>Login</title>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <script src="jquery/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
+ 	<meta charset="utf-8">
+ 	<link rel="stylesheet" href="css/bootstrap.min.css">
+ 	<script src="jquery/jquery.min.js"></script>
+ 	<script src="js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/js/bootstrap-dialog.min.js"></script>
+	<script type="text/javascript" src="js/login.js"></script>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<script type="text/javascript" src="js/login.js"></script>
 <body>
 	<?php
 		session_start();
@@ -36,14 +37,17 @@
 	  <div class="container">
 	      <form class="form-signin col-md-4 col-md-offset-4" action="login.php" method="post">
 	        <h2 class="form-signin-heading">Please sign in</h2>
-	        <label for="inputUsername" class="sr-only">Username</label>
-	        <input type="username" name="inputUsername" class="form-control" placeholder="Username" required autofocus>
-	        <label for="inputPassword" class="sr-only">Password</label>
+	        <p>Username:test and Password:test</p>
+	        <label class="sr-only">Username</label>
+	        <input name="inputUsername" class="form-control" placeholder="Username" required autofocus>
+	        </br>
+	        <label class="sr-only">Password</label>
 	        <input type="password" name="inputPassword" class="form-control" placeholder="Password" required><br>
-	        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+	        <button class="btn btn-primary btn-primary btn-md" type="submit">Sign in</button><br>
 	      </form>
 	    </div>
-	  <div class="modal fade">
+	    <div class="container">
+<div class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

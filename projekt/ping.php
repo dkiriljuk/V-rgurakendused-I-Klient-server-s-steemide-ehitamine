@@ -1,4 +1,12 @@
 <?php
+if(!isset($_SESSION))
+    {
+      session_start();
+    }
+    if ($_SESSION['id'] == null) {
+      session_destroy();
+      header("Location: login.php");
+    }
 include('database/db.class.php');
 $database = new db(); 
 $Data = $database->getALL("SELECT * FROM devices");

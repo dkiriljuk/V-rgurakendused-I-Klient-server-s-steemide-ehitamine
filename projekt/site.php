@@ -8,8 +8,6 @@
       session_destroy();
       header("Location: login.php");
     }
-
-;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,20 +24,20 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
-    <script async defer
+  <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyBsFiE7YPUalcCyLG4ZXlhTPHx9d4C6A&callback=initMap">
-    </script>
+  </script>
   <script type="text/javascript" src="js/script.js"></script>
+  <style type="text/css">
+    td.details-control {
+      background: url('../resources/details_open.png') no-repeat center center;
+      cursor: pointer;
+    }
+    tr.shown td.details-control {
+      background: url('../resources/details_close.png') no-repeat center center;
+    }
+  </style>
 </head>
-<style type="text/css">
-  td.details-control {
-    background: url('../resources/details_open.png') no-repeat center center;
-    cursor: pointer;
-}
-tr.shown td.details-control {
-    background: url('../resources/details_close.png') no-repeat center center;
-}
-</style>
 <body>
 <nav class="navbar navbar-inverse bg-primary">
   <div class="container-fluid">
@@ -68,13 +66,15 @@ tr.shown td.details-control {
       	</li>
     </ul>
   </div>
+
 </nav>
+  
 <div class="tab-content">
-    <div id="map" style="width:85%;height:800px;" class="tab-pane fade in active col-md-offset-1">
+    <div id="map" style="width:85%;height:700px;" class="tab-pane fade in active col-md-offset-1">
     </div>
     <div id="menu2" class="tab-pane fade col-md-offset-1 col-md-10">
       <h3>Device</h3>
-      <table id="table" class="display" cellspacing="0" width="100%">
+      <table id="table" style="width: 100%" class="display">
           <thead>
             <tr>
               <th>ID</th>
@@ -88,9 +88,6 @@ tr.shown td.details-control {
           </thead>
     </table>
     </div>
-    <script type="text/javascript">
-      
-    </script>
     <div id="menu3" class="tab-pane fade col-md-offset-1">
 	    <div class="col-xs-12 col-md-8">
 	      <h2>Please add divece(SWITCH/ROUTER)</h2>
@@ -146,6 +143,20 @@ tr.shown td.details-control {
     </div>
 	 </div>
   </div>
+  <div id="footer">
+  <div id="container">
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <p class="navbar-text pull-left">© 2017 - Dmitri Kiriljuk AK11</p>
+    <div class="navbar-text pull-right">
+      <a href="http://validator.w3.org/check?uri=referer">
+        <img src="http://www.w3.org/Icons/valid-xhtml10" alt="Valid XHTML 1.0 Strict" height="20" width="68" />
+      </a>
+      <a href="https://jigsaw.w3.org/css-validator/check?uri=referer">
+      <img src="https://www.w3.org/Icons/valid-css-blue" alt="Valid CSS Strict" height="20" width="68" />
+      </a>
+    </div>
+  </nav>
+</div>
 </div>
 <script type="text/javascript">
 $( "#insertForm" ).submit(function( event ) {
