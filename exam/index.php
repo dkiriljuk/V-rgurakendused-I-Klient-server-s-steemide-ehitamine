@@ -72,15 +72,12 @@ $( "#commentform" ).submit(function( event ) {
   event.preventDefault();
   var $form = $( this ),
     name = $form.find( "input[name='name']" ).val(),
-    comment = $form.find( "input[name='comment']" ).val(),
+    comment = $form.find( "textarea[name='comment']" ).val(),
     url = 'db_insert.php';
   var posting = $.post( url, { name: name, comment: comment} );
  
   posting.done(function( data ) {
-    if(data = 'success'){
       alert_insert_success(data);
-    }
-    
   });
 });
 function alert_insert_success(data){
@@ -90,7 +87,7 @@ function alert_insert_success(data){
             BootstrapDialog.show({
                 type: type,
                 title: 'SUCCESS',
-                message: 'Your comment has been stored!',
+                message: 'Your comment has been stored!'+ data + " comment has been stored",
             });     
         });
         });
