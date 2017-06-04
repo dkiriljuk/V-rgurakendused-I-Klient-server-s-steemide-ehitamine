@@ -5,11 +5,11 @@ $host="localhost";
 	$db="test";
 	$connection = mysqli_connect($host, $user, $pass, $db) or die("ei saa uhendust mootoriga");
 	$sql3 = "SELECT comment FROM dkiriljuk_exam";
-	$result = mysqli_query($connection, $sql2);
+	$result = mysqli_query($connection, $sql3);
 
 	if (mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
-        $comment = $row["comment"];
+        $comment = $row["comment"] . "</br>";
         echo $comment;
     }
 	} else {
